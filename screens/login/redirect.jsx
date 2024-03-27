@@ -63,14 +63,6 @@ export function Redirect({ navigation }) {
           <Button title="Cerrar Sesión" buttonStyle={styles.styleButton} titleStyle={styles.tittleText} onPress={() => handleLogout()} />
         </>
       )}
-      {/*
-      <Button
-        title="Cerrar Sesión"
-        buttonStyle={styles.styleButton}
-        titleStyle={styles.tittleText}
-        onPress={() => handleLogout()}
-      />
-      */}
     </View>
   );
 }

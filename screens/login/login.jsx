@@ -1,10 +1,7 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, ImageBackground } from "react-native";
-import { base } from "../../api/apiurl";
 import { loginStyles } from "./loginStyles";
-// import { base, baseURL } from "../../API/apiurl";
+import { useAuth } from "../../hook/useAuth ";
 
 const backgroundImage = require("../login/login1.jpg");
 
@@ -12,31 +9,11 @@ export default function Login({ navigation }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
-  const [user, setUser] = useState(null);
-
-  const ListarUser = async () => {
-    const rolValue = await AsyncStorage.getItem("rol");
-    setUser(rolValue);
-  };
-
-  useEffect(() => {
-    ListarUser();
-  }, [ListarUser]);
+  const { login } = useAuth();
 
   const handleLogin = async () => {
-    try {
-      const response = await axios.post(`${base}/login`, {
-        username,
-        password,
-      });
-      await AsyncStorage.setItem("token", response.data.token);
-      await AsyncStorage.setItem("username", response.data.Username);
-      navigation.navigate("Redirigir");
-    } catch (error) {
-      setError("Error en la autenticación");
-      console.log(error);
-    }
+    setError("");
+    await login(username, password, setError);
   };
 
   return (
