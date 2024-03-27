@@ -1,40 +1,23 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity, ActivityIndicator } from "react-native";
-import { Button, Icon } from "react-native-elements";
+import React from "react";
+import { Text, View, Image, TouchableOpacity, ActivityIndicator } from "react-native";
+import { Icon } from "react-native-elements";
 import { styles } from "../../styles/general";
-import { useListarElementos } from "../../hook/CRUDHook";
-import { infoURL } from "../../api/apiurl";
-import { getAsyncData } from "../../hook/asyncStorageUtils";
+import { useUserInfo } from "../../hook/useUserInfo";
+import { useLogout } from "../../hook/useLogout";
 
-export function InfoUser({ navigation }) {
-  // State to store user info fetched from API
-  const [info, setInfo] = useState();
-  // State to store the current user's username
-  const [user, setUser] = useState("");
+/**
+ * 
+ * InfoUser displays user information and provides a logout functionality. 
+ * It utilizes custom hooks to fetch and display user data, including the user's name, email, and role. 
+ * An image representing the user is shown, with a default placeholder if none is provided. 
+ * The component also includes a logout button that triggers a logout function, clearing user data and navigating to the login screen. 
+ * The presence of an ActivityIndicator ensures feedback is given while user data is being fetched.
+ */
+export function InfoUser() {
 
-  // Function to fetch user info based on username
-  const ListarInfo = useListarElementos(`${infoURL}/${user}`, setInfo);
-  useEffect(() => {
-    ListarInfo();
-  }, [ListarInfo]);
+  const info = useUserInfo();
+  const logout = useLogout();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const usuariov = await getAsyncData("username");
-      setUser(usuariov);
-    };
-
-    fetchData();
-  }, []);
-
-  // Handler for the logout process
-  const handleLogout = async () => {
-    await AsyncStorage.clear();
-    navigation.navigate("Login");
-  };
-
-  // Conditional rendering based on the availability of user info
   return info ? (
     <View style={styles.container}>
       <Image source={{ uri: info.profilePicture || "https://via.placeholder.com/150" }} style={styles.profilePic} />
@@ -43,7 +26,7 @@ export function InfoUser({ navigation }) {
       </Text>
       <Text style={styles.emailText}>{info.email}</Text>
       <Text style={styles.emailText}>{info.role?.name}</Text>
-      <TouchableOpacity style={styles.button} onPress={handleLogout}>
+      <TouchableOpacity style={styles.button} onPress={logout}>
         <Icon name="exit-to-app" size={30} color="#fff" />
         <Text style={styles.buttonText}>Cerrar Sesión</Text>
       </TouchableOpacity>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getAsyncData } from "./asyncStorageUtils";
 import { useListarElementos } from "./CRUDHook";
 import { infoURL } from "../api/apiurl";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const useUserInfo = () => {
   const [info, setInfo] = useState(null);
