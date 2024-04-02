@@ -24,7 +24,9 @@ export function useListarElementos(url, setDatos) {
           */
         await AsyncStorage.clear();
         navigation.navigate("Login");
+        setDatos("");
       } else {
+        setDatos("");
         // Otro error, manejarlo adecuadamente
         //console.error(`Error al obtener los datos del camión: ${url}`, error);
         // Token expirado, redirigir al inicio de sesión
@@ -74,4 +76,19 @@ export function useListarElementosParams(url, param1 ,setDatos) {
   }, [fetchData]);
 
   return fetchData;
+}
+
+
+export async function editarElemento(url, requestData) {
+  try {
+    const token = await AsyncStorage.getItem("token"); 
+    await axios.put(url, requestData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  } catch (error) {
+    // Manejo de errores, por ejemplo, mostrar un mensaje de error
+    console.error("Error al actualizar el elemento:", error);
+  }
 }

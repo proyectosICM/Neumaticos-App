@@ -35,6 +35,7 @@ export function VehicleInfo() {
     fetchData();
   }, [fetchData]);
 
+
   const seleccionarImagen = (vehicleType) => {
     switch (vehicleType) {
       case 1:

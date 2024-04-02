@@ -35,6 +35,7 @@ export function Redirect({ navigation }) {
     const obtenerDatosUser = async () => {
       if (info) {
         await AsyncStorage.setItem("username", info.username);
+        await AsyncStorage.setItem("companyId", info.company.id.toString());
         navigation.navigate("Inicio");
       }
     };

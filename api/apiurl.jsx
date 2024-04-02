@@ -12,6 +12,13 @@ export const vehicleURL = `${baseURL}/vehicle`;
 export const vehicleFindPlateURL = `${vehicleURL}/findByPlaca`;
 
 /**
+ * Tire
+ */
+export const tireURL = `${baseURL}/tire`;
+export const tireInfoTireURL = `${tireURL}/findByVehicleModelIdAndPositioningLocationCode`;
+export const tireSearchURL = `${tireURL}/search`;
+
+/**
  * TireSensor endpoints
  */
 export const tireSensorURL = `${baseURL}/tireSensor`;
