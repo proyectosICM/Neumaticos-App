@@ -7,6 +7,7 @@ import { VehicleInfo } from "./vehicleInfo";
 import { IrregularitiesTireList } from "./irregularitiesTireList";
 import { ChangeTireVehicle } from "./changeTireVehicle";
 import { BackHandler, ToastAndroid } from "react-native";
+import { SelectedChange } from "./selectedChange";
 
 const Tab = createBottomTabNavigator();
 
@@ -52,7 +53,7 @@ export function SecondCustomBottomTabBar({ navigation }) {
 
       <Tab.Screen
         name="Cambiar neumatico"
-        component={ChangeTireVehicle}
+        component={SelectedChange}
         options={{
           tabBarIcon: ({ color, size }) => <Ionicons name="build" color={color} size={size} />,
         }}

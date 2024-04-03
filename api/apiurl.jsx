@@ -23,7 +23,8 @@ export const tireSearchURL = `${tireURL}/search`;
  */
 export const tireSensorURL = `${baseURL}/tireSensor`;
 export const tireSensorxVehcileURL = `${tireSensorURL}/vehicle`;
-
+export const tireSensorxVehicleAndPosURL = `${tireSensorURL}/findByVehicleModelIdAndPositioningId`;
+export const tireSensorSearchURL = `${tireSensorURL}/search`;
 /**
  * Irregularities
  */

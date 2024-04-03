@@ -11,6 +11,8 @@ import { SecondCustomBottomTabBar } from './screens/pruebas/secondCustomBottomTa
 import { Redirect } from './screens/login/redirect';
 import { FindByPlate } from './screens/pruebas/findByPlate';
 import { IrregularitiesTireDetails } from './screens/pruebas/irregularitiesTireDetails';
+import { ChangeTireVehicle } from './screens/pruebas/changeTireVehicle';
+import { ChangeTireSensorVehicle } from './screens/pruebas/changeTireSensorVehicle';
 
 
 const Stack = createNativeStackNavigator();
@@ -38,7 +40,8 @@ export default function App() {
         <Stack.Screen name='p4' component={Pantalla4} />
         <Stack.Screen name='Buscar por placa' component={FindByPlate} />
         <Stack.Screen name='Detalle' component={IrregularitiesTireDetails} />
-
+        <Stack.Screen name='Cambiar Neumatico' component={ChangeTireVehicle} />
+        <Stack.Screen name='Cambiar Sensor' component={ChangeTireSensorVehicle} />
         {   /*     <Stack.Screen name='InformacionV' component={VehicleInfo} options={{ headerShown: false }} /> */}
 
       </Stack.Navigator>
